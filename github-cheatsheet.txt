@@ -1,0 +1,44 @@
+git pull origin master = If anyone made any change to
+update your directory so you're using the latest version
+
+git checkout -b index.html = If you're working on a new 
+feature, then do this.
+
+git add . = Adds everything that you have done
+git commit -m "added index html = To create a commit on
+git that needs to be checked by other collaborators
+
+git push origin index-html = Push your file you have 
+finished coding to the github directory
+
+Then scrum master will go on github and click
+compare & pull request to merge it onto the main
+branch.
+
+Leave a comment to state what you have done.
+Assign someone to review code
+
+Check if there's a conflict when merging to base branch.
+Go on commit and you'll see changes. Green is what was
+added and red was what was deleted.
+
+If happy then click merge pull request on github and it'll
+take the branch and upload to the master branch. You
+then will delete the other branch.
+
+Before you start any feature do:
+git checkout main
+git pull origin main
+
+This is to update to the latest version if changes
+has been made by other people.
+
+git checkout -b img-update
+Then add what you need added.
+
+Then git add .
+git commit -m "added images"
+git push 
+
+
+

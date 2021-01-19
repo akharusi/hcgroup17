@@ -2,10 +2,11 @@
 
 class RiskData {
     
-    protected $_riskID, $_riskDescription, $_riskType, $_riskProbability, $_riskConsequence, $_raw, $_riskDate, $_residualID, $_treatment, $_mitigation, $_residualProbability, $_residualConsequence, $_residual;
+    protected $_riskID, $_riskTitle, $_riskDescription, $_riskType, $_riskProbability, $_riskConsequence, $_raw, $_riskDate, $_residualID, $_treatment, $_mitigation, $_residualProbability, $_residualConsequence, $_residual;
     
     public function __construct($dbRow) {
         $this->_riskID = $dbRow['riskID'];
+		$this->_riskTitle = $dbRow['riskTitle'];
         $this->_riskDescription = $dbRow['riskDescription'];
         $this->_riskType = $dbRow['riskType'];
         $this->_riskProbability = $dbRow['riskProbability'];
@@ -22,6 +23,10 @@ class RiskData {
 
     public function getRiskID() {
         return $this->_riskID;
+    }
+	
+	public function getRiskTitle() {
+        return $this->_riskTitle;
     }
    
     public function getRiskDescription() {

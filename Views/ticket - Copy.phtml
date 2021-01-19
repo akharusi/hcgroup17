@@ -1,0 +1,45 @@
+<?php require ("template/header.phtml")?>;
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-sm-6 col-lg-8">
+	<div class="table-responsive">
+        <table id='userTable' class='table table-bordered'>
+            <thead>
+            <tr class="trc">
+
+                <th>PostID*</th>
+                <th>Message*</th>
+                <th>Replay*</th>
+
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+                <td width="5%"></td>
+                <td width="12%"></td>
+                <td width="12%"></td>
+
+            </tr>
+            </tbody>
+        </table>
+	</div>
+	</div>
+    <div class="col-6 col-lg-4">
+	<div class="card card-body bg-light mt-5">
+            <h2>Create Ticket:</h2>
+			</div>
+            <form class ="form" action="../Controller/register.php" method="post" >
+                <div class="form-group">
+                    <label for="exampleInputMessage">Your Message:</label>
+                    <textarea class="form-control form-control-lg" rows="7" type="text" name="confirmedPassword" id="exampleInputPassword1"></textarea>
+                </div>
+				<button type="submit" class="btn btn-success btn-block" >Submit</button>
+				</form>
+				</div>
+				</div>
+				</div>
+
+
+<?php require ("template/footer.phtml")?>

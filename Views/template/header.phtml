@@ -18,8 +18,49 @@
   <link href="css/style.css" rel="stylesheet">
 </head>
 
-<body role="document">
+<body>
 
   <!-- Start your project here-->
-  
-  <!-- Start your project here-->
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+      <a href="" class="navbar-brand">Portal</a>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+         <ul class="navbar-nav mr-auto">
+
+              <li class="nav-item">
+                  <a href="risks.php" class="nav-link">Home</a>
+              </li>
+              <li class="nav-item">
+                  <a href="risks.php" class="nav-link">Risk</a>
+              </li>
+             <li class="nav-item">
+                 <a href="ticket.php" class="nav-link">Ticket System</a>
+             </li>
+
+         </ul>
+             <ul class="navbar-nav ml-auto">
+              <?php
+              if(!isset($_SESSION['id'])) {
+                  echo '<li class="nav-item">
+                <a href="" class="nav-link">Login </a>
+            </li>';
+              }
+              else {
+                  echo '<form class="navbar-form" method ="post" action="logout.php">
+                <div class="input-group">
+                    
+                    <div class="input-group-btn">
+                        <button name="logoutbtn" class="btn " style=" background-color: #343a40; color: #9a9da0"  type="submit" ><a>Logout</a></button>
+                    </div>
+                </div>  
+            </form>';
+              }
+              ?>
+
+
+          </ul>
+      </div>
+  </nav>
+

@@ -40,7 +40,7 @@
     <br>
     <table id="dtBasicExample" class="table table-hover">
        <thead>
-        <tr><th>Risk Description</th><th>Risk Type</th><th>Risk Probability</th><th>Risk Consequence</th><th>Raw</th><th>Risk Date</th><th>Treatment</th><th>Mitigation</th><th>Res Prob</th><th>Res Consequence</th><th>Residual</th></tr>
+        <tr><th>Risk Description</th><th>Risk Type</th><th>Risk Probability</th><th>Risk Consequence</th><th>Raw</th><th>Risk Date</th><th>Treatment</th><th>Mitigation</th><th>Res Prob</th><th>Res Consequence</th><th>Residual</th><th></th></tr>
 
        
        </thead>   
@@ -48,34 +48,24 @@
     <tbody> 
 	<?php foreach ($view->risksDataSet as $riskData) {
 	echo '<tr>
-		<td>'. $riskData->getRiskDescription() .'</td>
+		<td><b>' . $riskData->getRiskTitle() . '</b><br><br>' . $riskData->getRiskDescription() .'</td>
 		<td>'. $riskData->getRiskType() .'</td>
-	<td class="';} if ($riskData->getRiskProbability() == 'Low') { echo 'green white-text">' . $riskData->getRiskProbability(); } if ($riskData->getRiskProbability() == 'Medium') { echo 'yellow white-text">' . $riskData->getRiskProbability(); } if ($riskData->getRiskProbability() == 'High') { echo 'red white-text">' . $riskData->getRiskProbability(); } '</td>' ?>
-	<?php foreach ($view->risksDataSet as $riskData) {
+	<td class="'; if ($riskData->getRiskProbability() == 'Low') { echo 'green white-text">' . $riskData->getRiskProbability(); } if ($riskData->getRiskProbability() == 'Medium') { echo 'yellow white-text">' . $riskData->getRiskProbability(); } if ($riskData->getRiskProbability() == 'High') { echo 'red white-text">' . $riskData->getRiskProbability(); } '</td>';
 		echo'
-		<td class="';} if ($riskData->getRiskConsequence() == 'Low') { echo 'green white-text">' . $riskData->getRiskConsequence(); } if ($riskData->getRiskConsequence() == 'Medium') { echo 'yellow white-text">' . $riskData->getRiskConsequence(); } if ($riskData->getRiskConsequence() == 'High') { echo 'red white-text">' . $riskData->getRiskConsequence(); } '</td>' ?>
-		<?php foreach ($view->risksDataSet as $riskData) {
+	<td class="'; if ($riskData->getRiskConsequence() == 'Low') { echo 'green white-text">' . $riskData->getRiskConsequence(); } if ($riskData->getRiskConsequence() == 'Medium') { echo 'yellow white-text">' . $riskData->getRiskConsequence(); } if ($riskData->getRiskConsequence() == 'High') { echo 'red white-text">' . $riskData->getRiskConsequence(); } '</td>'; 
 		echo'
-		<td class="';} if ($riskData->getRaw() == 'Tolerable') { echo 'green white-text">' . $riskData->getRaw(); } if ($riskData->getRaw() == 'Moderate') { echo 'yellow white-text">' . $riskData->getRaw(); } if ($riskData->getRaw() == 'Intolerable') { echo 'red white-text">' . $riskData->getRaw(); } '</td>' ?>
-		<?php foreach ($view->risksDataSet as $riskData) {
+		<td class="'; if ($riskData->getRaw() == 'Tolerable') { echo 'green white-text">' . $riskData->getRaw(); } if ($riskData->getRaw() == 'Moderate') { echo 'yellow white-text">' . $riskData->getRaw(); } if ($riskData->getRaw() == 'Intolerable') { echo 'red white-text">' . $riskData->getRaw(); } '</td>';
 		echo'
 		<td>'. $riskData->getRiskDate() . '</td>
-		<td class="';} if ($riskData->getTreatment() == 'Avoid') { echo 'red white-text">' . $riskData->getTreatment(); } if ($riskData->getTreatment() == 'Remove') { echo 'pink white-text">' . $riskData->getTreatment(); } if ($riskData->getTreatment() == 'Change') { echo 'red-text">' . $riskData->getTreatment(); } if ($riskData->getTreatment() == 'Share') { echo 'black-text">' . $riskData->getTreatment(); } if ($riskData->getTreatment() == 'Retain') { echo 'green white-text">' . $riskData->getTreatment(); } '</td>' ?>
-		<?php foreach ($view->risksDataSet as $riskData) {
+		<td class="'; if ($riskData->getTreatment() == 'Avoid') { echo 'red white-text">' . $riskData->getTreatment(); } else if ($riskData->getTreatment() == 'Remove') { echo 'pink white-text">' . $riskData->getTreatment(); } else if ($riskData->getTreatment() == 'Change') { echo 'red-text">' . $riskData->getTreatment(); } else if ($riskData->getTreatment() == 'Share') { echo 'black-text">' . $riskData->getTreatment(); } else if ($riskData->getTreatment() == 'Retain') { echo 'green white-text">' . $riskData->getTreatment(); } else { echo 'black-text">' . $riskData->getTreatment(); } '</td>';
 		echo'
 		<td>'. $riskData->getMitigation() . '</td>
-		<td class="';} if ($riskData->getResidualProbability() == 'Low') { echo 'green white-text">' . $riskData->getResidualProbability(); } if ($riskData->getResidualProbability() == 'Medium') { echo 'yellow white-text">' . $riskData->getResidualProbability(); } if ($riskData->getResidualProbability() == 'High') { echo 'red white-text">' . $riskData->getResidualProbability(); } '</td>' ?>
-		<?php foreach ($view->risksDataSet as $riskData) {
+	<td class="'; if ($riskData->getResidualProbability() == 'Low') { echo 'green white-text">' . $riskData->getResidualProbability(); } else if ($riskData->getResidualProbability() == 'Medium') { echo 'yellow white-text">' . $riskData->getResidualProbability(); } else if ($riskData->getResidualProbability() == 'High') { echo 'red white-text">' . $riskData->getResidualProbability(); } else { echo 'black-text">' . $riskData->getResidualProbability(); } '</td>';
 		echo'
-		<td class="';} if ($riskData->getResidualConsequence() == 'Low') { echo 'green white-text">' . $riskData->getResidualConsequence(); } if ($riskData->getResidualConsequence() == 'Medium') { echo 'yellow white-text">' . $riskData->getResidualConsequence(); } if ($riskData->getResidualConsequence() == 'High') { echo 'red white-text">' . $riskData->getResidualConsequence(); } '</td>' ?>
-		<?php foreach ($view->risksDataSet as $riskData) {
+		<td class="'; if ($riskData->getResidualConsequence() == 'Low') { echo 'green white-text">' . $riskData->getResidualConsequence(); } else if ($riskData->getResidualConsequence() == 'Medium') { echo 'yellow white-text">' . $riskData->getResidualConsequence(); } else if ($riskData->getResidualConsequence() == 'High') { echo 'red white-text">' . $riskData->getResidualConsequence(); } else { echo 'black-text">' . $riskData->getResidualConsequence(); } '</td>';
 		echo'
-		<td class="';} if ($riskData->getResidual() == 'Prepare') { echo 'red white-text">' . $riskData->getResidual(); } if ($riskData->getResidual() == 'Monitor') { echo 'yellow white-text">' . $riskData->getResidual(); } '</td>' ?>
-		<?php foreach ($view->risksDataSet as $riskData) {
-		echo '
-			<td class="p-0"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#basicExampleModal">
-			  Update
-			  </button></td>'; } ?>
+		<td class="'; if ($riskData->getResidual() == 'Prepare') { echo 'red white-text">' . $riskData->getResidual(); } else if ($riskData->getResidual() == 'Monitor') { echo 'yellow white-text">' . $riskData->getResidual(); } else { echo 'black-text">' . $riskData->getResidual(); } '</td>';
+		echo '<td class="p-0"><input type="button" value="Update" onclick="viewLot(' .$riskData->getRiskID() .')" class="btn btn-primary"/></td>'; } ?>
 			<!-- Modal -->
 			<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 			  aria-hidden="true">
@@ -90,6 +80,7 @@
 				  <div class="modal-body">
 				  <!--Blue select-->
 				  <div class="container">
+				  <form id="residualForm" method="post" role="form">
 				  <label for="Treatment" class="mdb-main-label">Choose a treatment</label>
 				<select name="Treatment" class="mdb-select md-form colorful-select dropdown-primary">
 				  <option value="Avoid">Avoid</option>
@@ -118,31 +109,33 @@
 				 <option value="Medium">Medium</option>
 				 <option value="High">High</option>
 				</select>
-				</div>
-				<!--/Blue select-->
-				  </div>
+				</div>			  
 				  <!--Material textarea-->
 				  <div class="container">
 				<div class="md-form md-outline">
-				  <textarea id="form75" class="md-textarea form-control" rows="3"></textarea>
+				  <textarea name="Mitigation" id="form75" class="md-textarea form-control" rows="3"></textarea>
 				  <label for="form75">Mitigation</label>
+				</div>
 				</div>
 				</div>
 				  <!--Modal body ends here -->
 				  <div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<input name="save" value="Save changes" type="submit" class="btn btn-primary"/>
+					<div>
+					<input name="Save" value="Save changes" type="submit" class="btn btn-primary"/>
+					</div>
+					</form>
 				  </div>
 				</div>
 			  </div>
-				</div>
+	</div>
 	</tr>
     </tbody>
 	</div>
   </table>  
-</form>
 </div>
 </div>
+<br>
 </div>
 
 <?php require('template/footer.phtml') ?>
@@ -155,5 +148,13 @@ $(document).ready(function () {
 // Material Select Initialization
 $(document).ready(function() {
 $('.mdb-select').materialSelect();
+});
+
+function viewLot(element) {
+	location.replace("risks.php?rid=" + element);
+}
+
+$(document).ready(function () {
+	$('#basicExampleModal').modal('show');
 });
 </script>

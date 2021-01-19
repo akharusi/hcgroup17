@@ -1,0 +1,193 @@
+<?php require('template/header.phtml') ?>
+
+
+<div class="container-fluid">
+
+<div class="p-3 card card-cascade narrower">
+<!--Card image-->
+  <div
+    class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
+
+    <div>
+      <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
+        <i class="fas fa-th-large mt-0"></i>
+      </button>
+      <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
+        <i class="fas fa-columns mt-0"></i>
+      </button>
+    </div>
+
+    <div class="d-flex justify-content-start"><a href="" class="white-text mx-5">Raw Risks</a></div>
+	<div class="d-flex justify-content-end"><a href="" class="white-text mx-5">Residual Risks</a></div>
+
+    <div>
+      <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
+        <i class="fas fa-pencil-alt mt-0"></i>
+      </button>
+      <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
+        <i class="far fa-trash-alt mt-0"></i>
+      </button>
+      <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
+        <i class="fas fa-info-circle mt-0"></i>
+      </button>
+    </div>
+
+  </div>
+  <!--/Card image-->
+
+<div class="table-responsive">
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <br>
+    <table id="dtBasicExample" class="table table-hover">
+       <thead>
+        <tr><th>Risk Description</th><th>Risk Type</th><th>Risk Probability</th><th>Risk Consequence</th><th>Raw</th><th>Risk Date</th><th>Treatment</th><th>Mitigation</th><th>Res Prob</th><th>Res Consequence</th><th>Residual</th><th></th></tr>
+
+       
+       </thead>   
+	<div class="card">
+    <tbody> 
+	<?php foreach ($view->risksDataSet as $riskData) {
+	echo '<tr>
+		<td>'. $riskData->getRiskDescription() .'</td>
+		<td>'. $riskData->getRiskType() .'</td>
+	<td class="'; if ($riskData->getRiskProbability() == 'Low') { echo 'green white-text">' . $riskData->getRiskProbability(); } if ($riskData->getRiskProbability() == 'Medium') { echo 'yellow white-text">' . $riskData->getRiskProbability(); } if ($riskData->getRiskProbability() == 'High') { echo 'red white-text">' . $riskData->getRiskProbability(); } '</td>';
+		echo'
+	<td class="'; if ($riskData->getRiskConsequence() == 'Low') { echo 'green white-text">' . $riskData->getRiskConsequence(); } if ($riskData->getRiskConsequence() == 'Medium') { echo 'yellow white-text">' . $riskData->getRiskConsequence(); } if ($riskData->getRiskConsequence() == 'High') { echo 'red white-text">' . $riskData->getRiskConsequence(); } '</td>'; 
+		echo'
+		<td class="'; if ($riskData->getRaw() == 'Tolerable') { echo 'green white-text">' . $riskData->getRaw(); } if ($riskData->getRaw() == 'Moderate') { echo 'yellow white-text">' . $riskData->getRaw(); } if ($riskData->getRaw() == 'Intolerable') { echo 'red white-text">' . $riskData->getRaw(); } '</td>';
+		echo'
+		<td>'. $riskData->getRiskDate() . '</td>
+		<td class="'; if ($riskData->getTreatment() == 'Avoid') { echo 'red white-text">' . $riskData->getTreatment(); } else if ($riskData->getTreatment() == 'Remove') { echo 'pink white-text">' . $riskData->getTreatment(); } else if ($riskData->getTreatment() == 'Change') { echo 'red-text">' . $riskData->getTreatment(); } else if ($riskData->getTreatment() == 'Share') { echo 'black-text">' . $riskData->getTreatment(); } else if ($riskData->getTreatment() == 'Retain') { echo 'green white-text">' . $riskData->getTreatment(); } else { echo 'black-text">' . $riskData->getTreatment(); } '</td>';
+		echo'
+		<td>'. $riskData->getMitigation() . '</td>
+	<td class="'; if ($riskData->getResidualProbability() == 'Low') { echo 'green white-text">' . $riskData->getResidualProbability(); } else if ($riskData->getResidualProbability() == 'Medium') { echo 'yellow white-text">' . $riskData->getResidualProbability(); } else if ($riskData->getResidualProbability() == 'High') { echo 'red white-text">' . $riskData->getResidualProbability(); } else { echo 'black-text">' . $riskData->getResidualProbability(); } '</td>';
+		echo'
+		<td class="'; if ($riskData->getResidualConsequence() == 'Low') { echo 'green white-text">' . $riskData->getResidualConsequence(); } else if ($riskData->getResidualConsequence() == 'Medium') { echo 'yellow white-text">' . $riskData->getResidualConsequence(); } else if ($riskData->getResidualConsequence() == 'High') { echo 'red white-text">' . $riskData->getResidualConsequence(); } else { echo 'black-text">' . $riskData->getResidualConsequence(); } '</td>';
+		echo'
+		<td class="'; if ($riskData->getResidual() == 'Prepare') { echo 'red white-text">' . $riskData->getResidual(); } else if ($riskData->getResidual() == 'Monitor') { echo 'yellow white-text">' . $riskData->getResidual(); } else { echo 'black-text">' . $riskData->getResidual(); } '</td>';
+		echo '
+			<td class="p-0">
+			<form method="post">
+			<button id="myBtn" type="button" value="' . $riskData->getRiskID() . '" class="btn btn-primary" data-toggle="modal" data-target="#basicExampleModal">
+			  Update
+	</button></td></form>'; } ?>
+			<!-- Modal -->
+			<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+			  aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+				<div class="modal-content">
+				  <div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Residual Risks</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					  <span aria-hidden="true">&times;</span>
+					</button>
+				  </div>
+				  <div class="modal-body">
+				  <!--Blue select-->
+				  <div class="container">
+				  <form id="residualForm" method="post" role="form">
+				  <label for="Treatment" class="mdb-main-label">Choose a treatment</label>
+				<select name="Treatment" class="mdb-select md-form colorful-select dropdown-primary">
+				  <option value="Avoid">Avoid</option>
+				  <option value="Remove">Remove</option>
+				  <option value="Change">Change</option>
+				  <option value="Share">Share</option>
+				  <option value="Retain">Retain</option>
+				</select>
+				</div>
+				<!--/Blue select-->
+				<!--Blue select-->
+				<div class="container">
+				<label for="residualProbability" class="mdb-main-label">Choose a residual probability</label>
+				<select name="residualProbability" class="mdb-select md-form colorful-select dropdown-primary">
+				  <option value="Low">Low</option>
+				  <option value="Medium">Medium</option>
+				  <option value="High">High</option>
+				</select>
+				</div>
+				<!--/Blue select-->
+				<!--Blue select-->
+				<div class="container">
+				<label for="residualConsequence" class="mdb-main-label">Choose a residual consequence</label>
+				<select name="residualConsequence" class="mdb-select md-form colorful-select dropdown-primary">
+				 <option value="Low">Low</option>
+				 <option value="Medium">Medium</option>
+				 <option value="High">High</option>
+				</select>
+				</div>
+				<!--Blue select-->
+				<div class="container">
+				<label for="residual" class="mdb-main-label">Choose a residual</label>
+				<select name="residual" class="mdb-select md-form colorful-select dropdown-primary">
+				 <option value="Prepare">Prepare</option>
+				 <option value="Monitor">Monitor</option>
+				</select>
+				</div>
+				<!--/Blue select-->
+				  </div>
+				  <!--Material textarea-->
+				  <div class="container">
+				<div class="md-form md-outline">
+				  <textarea name="Mitigation" id="form75" class="md-textarea form-control" rows="3"></textarea>
+				  <label for="form75">Mitigation</label>
+				</div>
+				</div>
+				  <!--Modal body ends here -->
+				  <div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<div>
+					<input name="Save" value="Save changes" type="submit" class="btn btn-primary"/>
+					</div>
+				  </div>
+				  </form>
+				</div>
+			  </div>
+	</div>
+	</tr>
+    </tbody>
+	</div>
+  </table>  
+</form>
+</div>
+</div>
+<br>
+</div>
+
+<?php require('template/footer.phtml') ?>
+<script>
+$(document).ready(function () {
+  $('#dtBasicExample').DataTable();
+  $('.dataTables_length').addClass('bs-select');
+});
+
+// Material Select Initialization
+$(document).ready(function() {
+$('.mdb-select').materialSelect();
+});
+
+$('button').click(function(){
+// fire off the request to /redirect.php
+request = $.ajax({
+    url: "/redirect.php",
+    type: "post",
+    data: document.getElementById("myBtn").value
+});
+
+// callback handler that will be called on success
+request.done(function (response, textStatus, jqXHR){
+    // log a message to the console
+    console.log("Hooray, it worked!");
+	console.log(document.getElementById("myBtn").value);
+	console.log(request);
+});
+
+// callback handler that will be called on failure
+request.fail(function (jqXHR, textStatus, errorThrown){
+    // log the error to the console
+    console.error(
+        "The following error occured: "+
+        textStatus, errorThrown
+    );
+    });
+});
+</script>
